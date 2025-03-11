@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formateo de Nombres y Apellidos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        input, button {
+            margin: 5px 0;
+            padding: 10px;
+            width: 100%;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Formateo de Nombres y Apellidos</h1>
+
+        <h2>Convertir a Mayúsculas</h2>
+        <input type="text" id="inputNombreCompleto" placeholder="Apellidos, Nombres">
+        <button onclick="convertirMayusculas()">Convertir</button>
+        <div class="result" id="resultadoMayusculas"></div>
+
+        <h2>Juntar Apellido y Nombre</h2>
+        <textarea 
+            id="inputApellidos" 
+            placeholder="Pegue aquí la columna de APELLIDOS" 
+            class="input-style"
+        ></textarea>
+        <textarea 
+            id="inputNombres" 
+            placeholder="Pegue aquí la columna de NOMBRES"
+            class="input-style"
+        ></textarea>
+        <button onclick="juntarApellidoNombre()">Juntar</button>
+        <div class="result" id="resultadoJuntar"></div>
+
+        <h2>Ordenar por Género</h2>
+        <textarea 
+            id="inputGeneroNombres" 
+            placeholder="Pegue aquí el listado de nombres/apellidos (Ejemplo: Garcia, Juan)"
+            class="input-style"
+        ></textarea>
+        <button onclick="generarSelectorGenero()">Preparar para ordenar</button>
+        <div id="selectorGeneroContainer"></div>
+        <div class="result">
+        <button onclick="copiarTabla()" class="btn-copiar">📋 Copiar tabla</button>
+        <table id="tablaResultados">
+            <thead>
+                <tr>
+                    <th>Apellido</th>
+                    <th>Nombre</th>
+                    <th>Género</th>
+                </tr>
+            </thead>
+            <tbody id="resultadoOrdenar"></tbody>
+        </table>
+    </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

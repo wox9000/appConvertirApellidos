@@ -1,0 +1,83 @@
+.input-style {
+    margin: 5px 0;
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+    resize: vertical;
+}
+.error {
+    color: #dc3545;
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #ffe6e6;
+    border-left: 3px solid #dc3545;
+}
+
+.ok {
+    color: #28a745;
+    margin: 5px 0;
+    padding: 5px;
+    border-left: 3px solid #28a745;
+}
+#inputApellidos, #inputNombres {
+    display: block;
+    margin: 10px 0;
+    height: 100px;
+}
+/* Estilos para selectores de género */
+.selector-fila {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.select-genero {
+    padding: 5px;
+    width: 120px;
+}
+
+.btn-ordenar {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#tablaResultados {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+#tablaResultados th,
+#tablaResultados td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#tablaResultados th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-copiar {
+    margin: 10px 0;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+.btn-copiar:hover {
+    background-color: #0056b3;
+}
