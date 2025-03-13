@@ -152,7 +152,7 @@ function ordenarPorGenero() {
         if (a.genero === b.genero) {
             return a.apellido.localeCompare(b.apellido);
         }
-        return a.genero === 'A' ? -1 : 1;
+        return a.genero === 'masculino' ? -1 : 1; // Corregido
     });
 
     // Generar tabla
