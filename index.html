@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Formateo de Nombres y Apellidos</title>
     <style>
         body {
@@ -58,12 +59,13 @@
         <button onclick="generarSelectorGenero()">Preparar para ordenar</button>
         <div id="selectorGeneroContainer"></div>
         <div class="result">
+        <button onclick="ordenarPorGenero()">Ordenar por Género</button>
         <button onclick="copiarTabla()" class="btn-copiar">📋 Copiar tabla</button>
         <table id="tablaResultados">
             <thead>
                 <tr>
-                    <th>Apellido</th>
-                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Nombres</th>
                     <th>Género</th>
                 </tr>
             </thead>

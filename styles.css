@@ -1,83 +1,134 @@
-.input-style {
-    margin: 5px 0;
-    padding: 10px;
+/* General */
+body {
+    font-family: 'Monaco', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+.container {
+    max-width: 90%;
+    width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+
+}
+
+/* Input y Botones */
+input, textarea {
     width: 100%;
-    height: 100px;
-    resize: vertical;
-}
-.error {
-    color: #dc3545;
-    margin: 5px 0;
-    padding: 5px;
-    background-color: #ffe6e6;
-    border-left: 3px solid #dc3545;
-}
-
-.ok {
-    color: #28a745;
-    margin: 5px 0;
-    padding: 5px;
-    border-left: 3px solid #28a745;
-}
-#inputApellidos, #inputNombres {
-    display: block;
-    margin: 10px 0;
-    height: 100px;
-}
-/* Estilos para selectores de género */
-.selector-fila {
-    margin: 10px 0;
     padding: 10px;
-    border: 1px solid #ddd;
+    margin: 5px 0;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
-.select-genero {
-    padding: 5px;
-    width: 120px;
-}
-
-.btn-ordenar {
-    margin-top: 15px;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
+button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
     border: none;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Estilos de la tabla */
 #tablaResultados {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
 }
 
-#tablaResultados th,
-#tablaResultados td {
+#tablaResultados th, #tablaResultados td {
     border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+    padding: 10px;
+    text-align: center;
 }
 
 #tablaResultados th {
-    background-color: #4CAF50;
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
     color: white;
 }
 
-.btn-copiar {
-    margin: 10px 0;
-    padding: 8px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    float: right;
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+    button {
+        font-size: 14px;
+    }
+}
+/* Añade esto al final de styles.css */
+
+/* ========== Cajas de texto mejoradas ========== */
+input[type="text"], 
+textarea {
+    max-width: 500px;       /* Ancho máximo para desktop */
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    transition: all 0.3s ease;
 }
 
-.btn-copiar:hover {
-    background-color: #0056b3;
+textarea {
+    height: 120px;          /* Altura más proporcionada */
+    min-height: 80px;       /* Altura mínima flexible */
+}
+
+/* Efecto de enfoque para mejor interacción */
+input[type="text"]:focus, 
+textarea:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+}
+
+/* ========== Media Queries para desktop ========== */
+@media (min-width: 768px) {
+    input[type="text"] {
+        width: 80%;
+        padding: 12px 15px;
+    }
+    
+    textarea {
+        width: 90%;
+        height: 100px;      /* Reduce altura en desktop */
+    }
+    
+    /* Botones más compactos en desktop */
+    button {
+        width: auto;
+        padding: 12px 30px;
+        display: inline-block;
+        margin: 10px 5px;
+    }
+    
+    /* Ajuste especial para botones de ordenar/copiar */
+    #selectorGeneroContainer + .result button {
+        width: 200px;
+    }
 }

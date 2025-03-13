@@ -39,13 +39,13 @@ function convertirMayusculas() {
         if (index < entradas.length - 1) {
             const nextStart = inputLimpio.indexOf(entradas[index + 1].apellidos, lastIndex);
             const residual = inputLimpio.substring(end, nextStart).trim();
-            if (residual) resultados.push(`⚠️ ERROR: "${residual}"`);
+            if (residual) resultados.push(`⚠️ ERROR (Formato Válido, "Apellido, Nombre"): "${residual}"`);
         }
     });
 
     // Verificar texto residual final
     const residualFinal = inputLimpio.substring(lastIndex).trim();
-    if (residualFinal) resultados.push(`⚠️ ERROR: "${residualFinal}"`);
+    if (residualFinal) resultados.push(`⚠️ ERROR (Formato Válido, "Apellido, Nombre"): "${residualFinal}"`);
 
     // Mostrar resultados
     document.getElementById('resultadoMayusculas').innerHTML = resultados
@@ -97,72 +97,47 @@ Apellidos: ${apellidos.length} | Nombres: ${nombres.length}`);
 let listaProcesada = [];
 
 function generarSelectorGenero() {
-    // Cambio de 'inputNombres' a 'inputGeneroNombres'
-    const inputNombres = document.getElementById('inputGeneroNombres').value;
+    const inputNombres = document.getElementById('inputGeneroNombres').value.trim();
 
-    // Validación del campo vacío
     if (!inputNombres) {
         alert('El campo de entrada no puede estar vacío. Por favor, ingresa nombres en el formato "Apellido, Nombre".');
         return;
     }
 
-    // Separar las líneas de entrada
     const lineas = inputNombres.split(/\n/);
-    const entradas = [];
-
-    // Validación de cada línea
-    for (let i = 0; i < lineas.length; i++) {
-        const linea = lineas[i].trim();
-
-        // Verificar si hay espacios innecesarios
-        if (linea !== lineas[i]) {
-            alert(`Error en la línea ${i + 1}: Hay espacios innecesarios al inicio o al final.`);
-            return;
-        }
-
-        // Verificar la existencia de una coma
-        if (!linea.includes(',')) {
-            alert(`Error en la línea ${i + 1}: Falta la coma para separar apellido y nombre.`);
-            return;
-        }
-
-        // Separar apellido y nombre
-        const partes = linea.split(',');
-        if (partes.length !== 2) {
-            alert(`Error en la línea ${i + 1}: Debe contener solo un apellido y un nombre.`);
-            return;
-        }
-
-        // Crear objeto de entrada
-        entradas.push({
-            apellido: partes[0].trim(),
-            nombre: partes[1].trim()
-        });
-    }
-
-    // Verificar si hay entradas válidas
-    if (entradas.length === 0) {
-        alert('Formato incorrecto. Asegúrate de ingresar al menos un "Apellido, Nombre".');
-        return;
-    }
-
-    // Generar la interfaz HTML
+    listaProcesada = []; // Reiniciar lista antes de llenarla
     const selectorGeneroContainer = document.getElementById('selectorGeneroContainer');
     selectorGeneroContainer.innerHTML = ''; // Limpiar contenedor
 
-    for (const entrada of entradas) {
+    lineas.forEach((linea, index) => {
+        const partes = linea.split(',');
+        if (partes.length !== 2) {
+            alert(`Error en la línea ${index + 1}: Formato incorrecto. Usa "Apellido, Nombre".`);
+            return;
+        }
+
+        const apellido = partes[0].trim();
+        const nombre = partes[1].trim();
+
+        // Agregar a listaProcesada
+        listaProcesada.push({ apellido, nombre });
+
+        // Crear el HTML del selector
         const div = document.createElement('div');
+        div.classList.add('selector-fila');
         div.innerHTML = `
-            <span>${entrada.apellido}, ${entrada.nombre}</span>
-            <select>
+            <span>${apellido}, ${nombre}</span>
+            <select id="genero-${index}" class="select-genero">
                 <option value="masculino">Masculino</option>
                 <option value="femenino">Femenino</option>
             </select>
         `;
         selectorGeneroContainer.appendChild(div);
-    }
+    });
 
-    // Aquí puedes agregar más lógica para ordenar la lista por género si es necesario
+    if (listaProcesada.length === 0) {
+        alert("No se detectaron entradas válidas.");
+    }
 }
 
 // función ordenarPorGenero():
@@ -186,7 +161,7 @@ function ordenarPorGenero() {
         <tr>
             <td>${item.apellido}</td>
             <td>${item.nombre || ''}</td>
-            <td>${item.genero === 'A' ? 'Masculino' : 'Femenino'}</td>
+            <td>${item.genero === 'masculino' ? 'Masculino' : 'Femenino'}</td>
         </tr>
     `).join('');
 }
